@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "pavandhub/docker-v2"
+    registry = "pavandhub/docker-v:3"
     registryCredential = 'dhub_credentials'
     dockerImage = ''
   }
