@@ -1,0 +1,47 @@
+pipeline {
+   agent any
+   environment 
+    {
+        VERSION = "${BUILD_NUMBER}"
+        PROJECT = 'aws_docker_pipeline'
+        ECRURL = '533267166046.dkr.ecr.ap-south-1.amazonaws.com/aws_docker_pipeline'
+        ECRCRED = 'ecr:ap-south-1:aws_credentials'
+		dockerImage = ''
+		 
+    }   
+    stages {
+      stage('GetSCM') {
+
+         steps {
+
+            // Get some code from a GitHub repository
+             git branch: 'main', credentialsId: 'git_credentials_new', url: 'https://github.com/pavanmech/hello_world_24-10.git'
+         }
+         }
+         stage('build'){
+             steps{
+                 script{
+                       dockerImage = docker.build("$PROJECT:${env.BUILD_NUMBER}") 
+					   
+                 }
+             }
+         }
+		 stage('Push Image'){
+         steps{
+             script
+                {
+                    docker.withRegistry(ECRURL, ECRCRED)
+                    {
+                         dockerImage.push()
+                    }
+                }
+            }
+         }
+       stage('remove image'){
+         steps{
+            sh "docker rmi  $PROJECT:${env.BUILD_NUMBER} "
+        }
+    }
+	}
+	
+}
