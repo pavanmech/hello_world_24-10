@@ -14,7 +14,6 @@ pipeline {
 
          steps {
 
-            // Get some code from a GitHub repository
              git branch: 'main', credentialsId: 'git_credentials_new', url: 'https://github.com/pavanmech/hello_world_24-10.git'
                 }
          }
