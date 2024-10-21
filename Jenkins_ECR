@@ -4,7 +4,7 @@ pipeline {
     {
         VERSION = "${BUILD_NUMBER}"
         PROJECT = 'aws_docker_pipeline'
-        ECRURL = '533267166046.dkr.ecr.ap-south-1.amazonaws.com/aws_docker_pipeline'
+        ECRURL = 'http://533267166046.dkr.ecr.ap-south-1.amazonaws.com/aws_docker_pipeline/'
         ECRCRED = 'ecr:ap-south-1:aws_credentials'
 		dockerImage = ''
 		 
