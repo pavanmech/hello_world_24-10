@@ -20,7 +20,7 @@ pipeline {
          stage('build'){
              steps{
                  script{
-                       dockerImage = docker.build("$PROJECT:${env.BUILD_NUMBER}") 
+                       dockerImage = docker.build("$PROJECT:v${env.BUILD_NUMBER}") 
 					   
                  }
              }
@@ -38,7 +38,7 @@ pipeline {
          }
        stage('remove image'){
          steps{
-            sh "docker rmi  $PROJECT:${env.BUILD_NUMBER} "
+            sh "docker rmi  $PROJECT:v${env.BUILD_NUMBER} "
         }
     }
 	}
