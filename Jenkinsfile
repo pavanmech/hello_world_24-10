@@ -1,4 +1,4 @@
 @Library("pavanmech@main") _
 pushDockerHub2(
-ecrRepoName: 'Hello_World_Docker_Shared'
+ecrRepoName: 'hello_world_24-10'
 )
